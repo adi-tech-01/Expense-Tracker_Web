@@ -2,7 +2,7 @@
 
 A blazing-fast, modern financial dashboard built entirely with HTML, CSS, and vanilla JavaScript. This project demonstrates modern frontend state management, utilizing the browser's LocalStorage to save data securely without needing a backend server.
 
-### 🔴 [Click Here to View the Live App](YOUR_GITHUB_PAGES_LINK_HERE)
+### 🔴 [Click Here to View the Live App](https://adi-tech-01.github.io/Expense-Tracker_Web/)
 
 ---
 
