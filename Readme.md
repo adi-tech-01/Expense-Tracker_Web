@@ -7,9 +7,17 @@ A blazing-fast, modern financial dashboard built entirely with HTML, CSS, and va
 ---
 
 ## 📸 App Preview
+---
+## Home Screen
 ![Expense Tracker Interface](demo1.png)
+---
+## Manage 
 ![Expense Tracker Interface](demo2.png)
+---
+## New Expense
 ![Expense Tracker Interface](demo3.png)
+---
+## Analytics
 ![Expense Tracker Interface](demo4.png)
 
 ---
