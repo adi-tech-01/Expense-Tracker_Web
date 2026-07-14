@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker App</title>
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <div id="screen-home" class="screen active">
+        <div class="header">
+            <h1><span id="greeting">Welcome, User</span> Your Dashboard</h1>
+            <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">🌙</button>
+        </div>
+        <div class="main-card">
+            <h3 style="margin:0; font-size:14px; opacity:0.8;">Total Outcome</h3>
+            <h2 id="total-amount">₹0.00</h2>
+            <div class="mini-chart" id="home-mini-chart"></div>
+        </div>
+        <div class="nav-arrow-container">
+            <button class="nav-arrow" onclick="navigate('actions')">➔</button>
+        </div>
+    </div>
+
+    <div id="screen-actions" class="screen">
+        <button class="back-btn" onclick="navigate('home')">← Back Home</button>
+        <div class="header"><h1><span>Manage</span> What would you like to do?</h1></div>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="navigate('add')">
+                <div class="menu-icon">➕</div><h4>Add Expense</h4>
+            </div>
+            <div class="menu-card" onclick="navigate('view')">
+                <div class="menu-icon">📊</div><h4>View Analytics</h4>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-add" class="screen">
+        <button class="back-btn" onclick="navigate('actions')">← Back</button>
+        <div class="header"><h1><span>Create</span> New Expense</h1></div>
+        <div class="form-section">
+            <input type="text" id="category" placeholder="Category (e.g., Food, Travel)">
+            <input type="number" id="amount" placeholder="Total Amount (₹)">
+            <div class="split-row">
+                <span style="color:var(--text-main); font-weight:600;">Split Expense With:</span>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="font-size:20px;">👥</span>
+                    <input type="number" id="split-count" value="1" min="1" max="50">
+                </div>
+            </div>
+            <button class="save-btn" onclick="saveExpense()">Save Transaction</button>
+            <p id="status" style="text-align:center; font-weight:bold; margin-top:15px;"></p>
+        </div>
+    </div>
+
+    <div id="screen-view" class="screen">
+        <button class="back-btn" onclick="navigate('actions')">← Back</button>
+        <div class="header" style="padding-bottom: 20px;"><h1><span>Your</span> Analytics</h1></div>
+        <div class="transactions-section">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
+                <h3 style="margin:0; color:var(--text-main);">Visual Breakdown</h3>
+                <select id="chart-type" onchange="renderApp()" style="padding:5px 10px; border-radius:10px; background:var(--bg-main); color:var(--text-main); border:1px solid var(--border-color); outline:none;">
+                    <option value="pie">3D Pie Chart</option>
+                    <option value="column">3D Bar Graph</option>
+                </select>
+            </div>
+            <div id="chart-container" style="width:100%; height:220px; margin-bottom:20px;"></div>
+            <h3 style="color:var(--text-main); margin-bottom:15px;">Recent Transactions</h3>
+            <div id="expense-list"></div>
+        </div>
+    </div>
+
+    <div id="screen-settings" class="screen">
+        <div class="header"><h1><span>Settings</span> Account & Profile</h1></div>
+        <div class="form-section">
+            <div id="auth-section">
+                <p style="color:var(--text-muted); margin-bottom:20px;">Log in to personalize your local dashboard.</p>
+                <button class="auth-btn btn-google" onclick="mockLogin('google')">🌐 Continue with Google</button>
+                <button class="auth-btn btn-mobile" onclick="mockLogin('mobile')">📱 Continue with Mobile</button>
+            </div>
+            <div id="profile-section" style="display:none; text-align:center; padding: 20px; background:var(--white); border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                <div style="font-size: 50px; margin-bottom: 10px;">👤</div>
+                <h3 id="profile-name" style="color:var(--text-main); margin:0;"></h3>
+                <p style="color:var(--text-muted); margin-top:5px;">Data stored securely on device.</p>
+                <button onclick="logout()" style="background:none; border:1px solid #ff4d4d; color:#ff4d4d; padding:8px 20px; border-radius:12px; margin-top:10px; cursor:pointer; font-weight:bold;">Log Out</button>
+                <button onclick="clearAllData()" style="background:none; border:1px solid #ff4d4d; color:white; background:#ff4d4d; padding:8px 20px; border-radius:12px; margin-top:10px; cursor:pointer; font-weight:bold; display:block; width:100%;">Clear All Expense Data</button>
+            </div>
+            <div class="app-desc">
+                <b>Serverless Expense Tracker v3.0</b><br>
+                A high-performance HTML/JS financial dashboard running entirely in your browser using LocalStorage.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-dock">
+        <div class="dock-item active" id="dock-home" onclick="navigate('home')">🏠<span>HOME</span></div>
+        <div class="dock-item" id="dock-settings" onclick="navigate('settings')">⚙️<span>SETTINGS</span></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
